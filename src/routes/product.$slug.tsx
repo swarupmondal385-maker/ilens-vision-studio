@@ -4,7 +4,7 @@ import {
   ArrowLeft, Heart, Share2, ShoppingBag, Star, Truck, ShieldCheck,
   RefreshCcw, Sparkles, Eye, Check, MessageCircle, ChevronRight,
 } from "lucide-react";
-import { getProduct, relatedProducts, PRODUCTS } from "@/lib/products";
+import { getProduct, relatedProducts, PRODUCTS, type Product } from "@/lib/products";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: ({ params }) => {
