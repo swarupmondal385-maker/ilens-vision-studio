@@ -54,18 +54,6 @@ const IMG = {
   },
 };
 
-const PRODUCTS = [
-  { name: "ILENS emmy", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/SDN07703-300x300.jpg", price: 350, mrp: 500, tag: "Eyeglasses", url: "https://ilenseyewear.com/product/ilens-emmy-5/" },
-  { name: "ILENS woww (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn07040-300x300.jpg", price: 1500, mrp: 2000, tag: "Free Lens", url: "https://ilenseyewear.com/product/ilens-wowwwith-free-lens-3/" },
-  { name: "ILENS putu (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/SDN06154-scaled-300x300.jpg", price: 1000, mrp: 1500, tag: "Free Lens", url: "https://ilenseyewear.com/product/ilens-putuwith-free-lens-5/" },
-  { name: "ILENS woww (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/SDN07226-300x300.jpg", price: 1500, mrp: 2000, tag: "Trending", url: "https://ilenseyewear.com/product/ilens-wowwwith-free-lens-24/" },
-  { name: "ILENS wing (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08804-300x300.jpg", price: 1000, mrp: 1500, tag: "New", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-9/" },
-  { name: "ILENS wing (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08772-300x300.jpg", price: 1000, mrp: 1500, tag: "New", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-8/" },
-  { name: "ILENS wing — Cat Eye", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08764-300x300.jpg", price: 1000, mrp: 1500, tag: "Cat Eye", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-7/" },
-  { name: "ILENS wing", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08750-300x300.jpg", price: 800, mrp: 1000, tag: "Sale", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-5/" },
-  { name: "ILENS wing", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08738-300x300.jpg", price: 800, mrp: 1000, tag: "Sale", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-4/" },
-  { name: "ILENS hoston (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08695-300x300.jpg", price: 1500, mrp: 2000, tag: "Cat Eye", url: "https://ilenseyewear.com/product/ilens-hoston-with-free-lens-5/" },
-];
 
 const CATEGORIES = [
   { name: "Eyeglasses", icon: Glasses, href: "https://ilenseyewear.com/product-category/eyeglasses/" },
