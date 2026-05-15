@@ -314,24 +314,33 @@ function Hero() {
 
 /* -------------------- TRENDING -------------------- */
 
-function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
+function ProductCard({ p }: { p: Product }) {
   const off = Math.round(((p.mrp - p.price) / p.mrp) * 100);
   return (
-    <a href={p.url} className="group block" data-reveal>
+    <Link to="/product/$slug" params={{ slug: p.slug }} className="group block" data-reveal>
       <div className="relative overflow-hidden rounded-2xl bg-beige-soft aspect-square ring-1 ring-border">
         {off > 0 && (
           <span className="absolute top-3 left-3 z-10 rounded-full bg-ink text-background text-[10px] font-bold px-2.5 py-1">
             {off}% OFF
           </span>
         )}
-        <button className="absolute top-3 right-3 z-10 grid place-items-center size-8 rounded-full bg-background/90 hover:bg-background shadow-sm" aria-label="Wishlist">
-          <Heart className="size-4 text-ink" />
-        </button>
-        <img src={p.img} alt={p.name} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        {p.freeLens && (
+          <span className="absolute top-3 right-3 z-10 rounded-full bg-primary/90 text-ink text-[10px] font-bold px-2.5 py-1 inline-flex items-center gap-1">
+            <Sparkles className="size-3" /> Free Lens
+          </span>
+        )}
+        <img
+          src={p.img}
+          alt={p.name}
+          className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-ink/85 backdrop-blur text-background text-center text-xs font-semibold py-2.5">
+          Quick view →
+        </div>
       </div>
       <div className="mt-3 px-1">
         <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{p.tag}</div>
-        <div className="mt-0.5 font-medium text-ink line-clamp-1">{p.name}</div>
+        <div className="mt-0.5 font-medium text-ink line-clamp-1 group-hover:text-primary transition-colors">{p.name}</div>
         <div className="mt-1 flex items-baseline gap-2">
           <span className="font-bold text-ink">₹{p.price.toLocaleString("en-IN")}</span>
           {p.mrp > p.price && (
@@ -339,7 +348,7 @@ function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
           )}
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
