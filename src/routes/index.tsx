@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Search, ShoppingBag, Heart, User, Menu, X,
@@ -7,6 +7,7 @@ import {
   Star, MapPin, Phone, MessageCircle, Navigation,
   Instagram, ChevronRight, Sparkles, ArrowRight, Calendar,
 } from "lucide-react";
+import { PRODUCTS, type Product } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
   component: Index,
