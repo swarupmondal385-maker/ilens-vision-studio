@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import {
   Search, ShoppingBag, Heart, User, Menu, X,
@@ -7,6 +7,7 @@ import {
   Star, MapPin, Phone, MessageCircle, Navigation,
   Instagram, ChevronRight, Sparkles, ArrowRight, Calendar,
 } from "lucide-react";
+import { PRODUCTS, type Product } from "@/lib/products";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -53,18 +54,6 @@ const IMG = {
   },
 };
 
-const PRODUCTS = [
-  { name: "ILENS emmy", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/SDN07703-300x300.jpg", price: 350, mrp: 500, tag: "Eyeglasses", url: "https://ilenseyewear.com/product/ilens-emmy-5/" },
-  { name: "ILENS woww (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn07040-300x300.jpg", price: 1500, mrp: 2000, tag: "Free Lens", url: "https://ilenseyewear.com/product/ilens-wowwwith-free-lens-3/" },
-  { name: "ILENS putu (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/SDN06154-scaled-300x300.jpg", price: 1000, mrp: 1500, tag: "Free Lens", url: "https://ilenseyewear.com/product/ilens-putuwith-free-lens-5/" },
-  { name: "ILENS woww (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/SDN07226-300x300.jpg", price: 1500, mrp: 2000, tag: "Trending", url: "https://ilenseyewear.com/product/ilens-wowwwith-free-lens-24/" },
-  { name: "ILENS wing (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08804-300x300.jpg", price: 1000, mrp: 1500, tag: "New", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-9/" },
-  { name: "ILENS wing (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08772-300x300.jpg", price: 1000, mrp: 1500, tag: "New", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-8/" },
-  { name: "ILENS wing — Cat Eye", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08764-300x300.jpg", price: 1000, mrp: 1500, tag: "Cat Eye", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-7/" },
-  { name: "ILENS wing", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08750-300x300.jpg", price: 800, mrp: 1000, tag: "Sale", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-5/" },
-  { name: "ILENS wing", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08738-300x300.jpg", price: 800, mrp: 1000, tag: "Sale", url: "https://ilenseyewear.com/product/ilens-wing-with-free-lens-4/" },
-  { name: "ILENS hoston (with free lens)", img: "https://ilenseyewear.com/wp-content/uploads/2026/05/sdn08695-300x300.jpg", price: 1500, mrp: 2000, tag: "Cat Eye", url: "https://ilenseyewear.com/product/ilens-hoston-with-free-lens-5/" },
-];
 
 const CATEGORIES = [
   { name: "Eyeglasses", icon: Glasses, href: "https://ilenseyewear.com/product-category/eyeglasses/" },
@@ -325,24 +314,33 @@ function Hero() {
 
 /* -------------------- TRENDING -------------------- */
 
-function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
+function ProductCard({ p }: { p: Product }) {
   const off = Math.round(((p.mrp - p.price) / p.mrp) * 100);
   return (
-    <a href={p.url} className="group block" data-reveal>
+    <Link to="/product/$slug" params={{ slug: p.slug }} className="group block" data-reveal>
       <div className="relative overflow-hidden rounded-2xl bg-beige-soft aspect-square ring-1 ring-border">
         {off > 0 && (
           <span className="absolute top-3 left-3 z-10 rounded-full bg-ink text-background text-[10px] font-bold px-2.5 py-1">
             {off}% OFF
           </span>
         )}
-        <button className="absolute top-3 right-3 z-10 grid place-items-center size-8 rounded-full bg-background/90 hover:bg-background shadow-sm" aria-label="Wishlist">
-          <Heart className="size-4 text-ink" />
-        </button>
-        <img src={p.img} alt={p.name} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        {p.freeLens && (
+          <span className="absolute top-3 right-3 z-10 rounded-full bg-primary/90 text-ink text-[10px] font-bold px-2.5 py-1 inline-flex items-center gap-1">
+            <Sparkles className="size-3" /> Free Lens
+          </span>
+        )}
+        <img
+          src={p.img}
+          alt={p.name}
+          className="absolute inset-0 h-full w-full object-cover group-hover:scale-110 transition-transform duration-700"
+        />
+        <div className="absolute inset-x-0 bottom-0 translate-y-full group-hover:translate-y-0 transition-transform duration-300 bg-ink/85 backdrop-blur text-background text-center text-xs font-semibold py-2.5">
+          Quick view →
+        </div>
       </div>
       <div className="mt-3 px-1">
         <div className="text-[11px] uppercase tracking-wider text-muted-foreground">{p.tag}</div>
-        <div className="mt-0.5 font-medium text-ink line-clamp-1">{p.name}</div>
+        <div className="mt-0.5 font-medium text-ink line-clamp-1 group-hover:text-primary transition-colors">{p.name}</div>
         <div className="mt-1 flex items-baseline gap-2">
           <span className="font-bold text-ink">₹{p.price.toLocaleString("en-IN")}</span>
           {p.mrp > p.price && (
@@ -350,7 +348,7 @@ function ProductCard({ p }: { p: (typeof PRODUCTS)[number] }) {
           )}
         </div>
       </div>
-    </a>
+    </Link>
   );
 }
 
