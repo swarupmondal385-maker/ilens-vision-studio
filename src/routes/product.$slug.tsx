@@ -53,7 +53,7 @@ const WA_NUMBER = "919999999999";
 const MAPS_LINK = "https://maps.app.goo.gl/KhgY2g92bH2Ht5b6A?g_st=ic";
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: Product };
   const off = Math.round(((product.mrp - product.price) / product.mrp) * 100);
   const gallery = useMemo(
     () => product.gallery && product.gallery.length ? product.gallery : [product.img, product.img, product.img],
