@@ -1,0 +1,6 @@
+{
+  "buildCommand": "vite build",
+  "outputDirectory": ".vercel/output/static",
+  "framework": null,
+  "installCommand": "npm install"
+}
