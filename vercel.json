@@ -1,4 +1,11 @@
 {
   "buildCommand": "vite build",
-  "installCommand": "npm install"
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/"
+    }
+  ]
 }
