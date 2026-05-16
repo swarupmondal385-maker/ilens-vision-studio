@@ -6,11 +6,6 @@ import tailwindcss from "@tailwindcss/vite"
 import tsConfigPaths from "vite-tsconfig-paths"
 
 export default defineConfig({
-  plugins: [
-    tanstackStart(),
-    nitro(),
-    viteReact(),
-    tailwindcss(),
-    tsConfigPaths({ projects: ["./tsconfig.json"] }),
-  ],
+  plugins: [tanstackStart(), nitro(), viteReact(), tailwindcss(), tsConfigPaths({ projects: ["./tsconfig.json"] })],
+  nitro: {},
 })
