@@ -26,7 +26,6 @@ const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Hi%20iLens%2C%20I%27m%20interes
 const PHONE_LINK = "tel:+919999999999";
 const MAPS_LINK = "https://maps.app.goo.gl/KhgY2g92bH2Ht5b6A?g_st=ic";
 const INSTAGRAM_LINK = "https://www.instagram.com/ilenseyewear/";
-const SHOP_LINK = "https://ilenseyewear.com/shop/";
 
 const IMG = {
   men: "https://ilenseyewear.com/wp-content/uploads/2026/05/mens-Eyewear-1.png",
@@ -56,12 +55,12 @@ const IMG = {
 
 
 const CATEGORIES = [
-  { name: "Eyeglasses", icon: Glasses, href: "https://ilenseyewear.com/product-category/eyeglasses/" },
-  { name: "Sunglasses", icon: Sun, href: "https://ilenseyewear.com/product-category/sunglasses/" },
-  { name: "Power Sunglasses", icon: Eye, href: SHOP_LINK },
-  { name: "Kids Glasses", icon: Baby, href: "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/" },
-  { name: "Computer Glasses", icon: Monitor, href: SHOP_LINK },
-  { name: "Reading Glasses", icon: BookOpen, href: SHOP_LINK },
+  { name: "Eyeglasses", icon: Glasses, slug: "eyeglasses" },
+  { name: "Sunglasses", icon: Sun, slug: "sunglasses" },
+  { name: "Power Sunglasses", icon: Eye, slug: "power-sunglasses" },
+  { name: "Kids Glasses", icon: Baby, slug: "kids-glasses" },
+  { name: "Computer Glasses", icon: Monitor, slug: "computer-glasses" },
+  { name: "Reading Glasses", icon: BookOpen, slug: "reading-glasses" },
 ];
 
 function useReveal() {
