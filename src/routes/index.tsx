@@ -224,13 +224,13 @@ function Categories() {
     <section className="border-b border-border/60">
       <div className="mx-auto max-w-7xl px-4 py-6 md:py-8">
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 md:gap-6">
-          {CATEGORIES.map(({ name, icon: Icon, href }) => (
-            <a key={name} href={href} className="flex flex-col items-center text-center group" data-reveal>
+          {CATEGORIES.map(({ name, icon: Icon, slug }) => (
+            <Link key={name} to="/collection/$slug" params={{ slug }} className="flex flex-col items-center text-center group" data-reveal>
               <div className="grid place-items-center size-20 sm:size-24 rounded-full bg-sky-soft group-hover:bg-sky transition-colors ring-1 ring-sky/40">
                 <Icon className="size-9 sm:size-10 text-ink" strokeWidth={1.6} />
               </div>
               <span className="mt-2 text-xs sm:text-sm font-medium text-foreground/80 group-hover:text-ink">{name}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -258,9 +258,9 @@ function Hero() {
                 Premium eyewear designed for sharp vision, lasting comfort and effortless style — handpicked frames from <strong>₹350</strong>, with free lens on select pairs.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href={SHOP_LINK} className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-6 py-3 text-sm font-semibold hover:bg-ink/85 transition-colors">
+                <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-6 py-3 text-sm font-semibold hover:bg-ink/85 transition-colors">
                   Shop Now <ArrowRight className="size-4" />
-                </a>
+                </Link>
                 <a href="#book" className="inline-flex items-center gap-2 rounded-full bg-background ring-1 ring-border px-6 py-3 text-sm font-semibold hover:bg-surface transition-colors">
                   <Calendar className="size-4" /> Book Eye Test
                 </a>
@@ -360,9 +360,9 @@ function TrendingProducts() {
             <p className="text-sm font-medium text-primary mb-2">Bestsellers</p>
             <h2 className="text-3xl md:text-4xl font-bold text-ink">Trending Eyewear</h2>
           </div>
-          <a href={SHOP_LINK} className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-ink hover:gap-2 transition-all">
+          <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-ink hover:gap-2 transition-all">
             View all <ChevronRight className="size-4" />
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {PRODUCTS.slice(0, 10).map((p, i) => <ProductCard key={i} p={p} />)}
