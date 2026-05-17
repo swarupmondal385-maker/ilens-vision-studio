@@ -68,12 +68,12 @@ function CollectionPage() {
               <p className="mt-5 max-w-xl text-base md:text-lg leading-relaxed text-foreground/75">{collection.description}</p>
               <div className="mt-7 grid grid-cols-3 max-w-xl gap-3 text-sm">
                 {[
-                  [Truck, "Free shipping"],
-                  [ShieldCheck, "ISO certified"],
-                  [Sparkles, "Premium lens"],
-                ].map(([Icon, label]) => (
-                  <div key={label as string} className="rounded-2xl bg-background/80 ring-1 ring-border p-3 font-semibold text-ink">
-                    <Icon className="mb-2 size-5 text-primary" /> {label as string}
+                  { Icon: Truck, label: "Free shipping" },
+                  { Icon: ShieldCheck, label: "ISO certified" },
+                  { Icon: Sparkles, label: "Premium lens" },
+                ].map(({ Icon, label }) => (
+                  <div key={label} className="rounded-2xl bg-background/80 ring-1 ring-border p-3 font-semibold text-ink">
+                    <Icon className="mb-2 size-5 text-primary" /> {label}
                   </div>
                 ))}
               </div>
