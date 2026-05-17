@@ -637,7 +637,7 @@ function Newsletter() {
 
 function Footer() {
   const cols = [
-    { title: "Shop", links: [["Eyeglasses", "https://ilenseyewear.com/product-category/eyeglasses/"], ["Sunglasses", "https://ilenseyewear.com/product-category/sunglasses/"], ["Kids", "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/"], ["New Arrivals", SHOP_LINK]] },
+    { title: "Shop", links: [["Eyeglasses", "/collection/eyeglasses"], ["Sunglasses", "/collection/sunglasses"], ["Kids", "/collection/kids-glasses"], ["New Arrivals", "/collection/new-arrivals"]] },
     { title: "Help", links: [["Contact", WA_LINK], ["Track Order", "https://ilenseyewear.com/my-account/"], ["Shipping", "#"], ["Returns", "#"]] },
     { title: "About", links: [["Our Story", "#"], ["ISO Certification", "#"], ["Visit Store", MAPS_LINK], ["Instagram", INSTAGRAM_LINK]] },
   ];
