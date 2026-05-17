@@ -292,18 +292,18 @@ function Hero() {
         {/* Two image cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           {[
-            { img: IMG.men, title: "Men's Eyewear", href: "https://ilenseyewear.com/product-category/eyeglasses/mens-eyeglasses/" },
-            { img: IMG.women, title: "Women's Eyewear", href: "https://ilenseyewear.com/product-category/eyeglasses/womens-eyeglasses/" },
-            { img: IMG.kids, title: "Kids Eyewear", href: "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/" },
+            { img: IMG.men, title: "Men's Eyewear", slug: "men" },
+            { img: IMG.women, title: "Women's Eyewear", slug: "women" },
+            { img: IMG.kids, title: "Kids Eyewear", slug: "kids" },
           ].map((c) => (
-            <a key={c.title} href={c.href} className="group relative block overflow-hidden rounded-2xl bg-sky-soft aspect-[4/3]" data-reveal>
+            <Link key={c.title} to="/collection/$slug" params={{ slug: c.slug }} className="group relative block overflow-hidden rounded-2xl bg-sky-soft aspect-[4/3]" data-reveal>
               <img src={c.img} alt={c.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/0 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
                 <h3 className="text-background text-xl font-bold">{c.title}</h3>
                 <span className="grid place-items-center size-9 rounded-full bg-background text-ink"><ArrowRight className="size-4" /></span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -511,10 +511,10 @@ function DealsOfWeek() {
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {[
-            { img: IMG.sunWomen, label: "Women's Sunglasses", href: "https://ilenseyewear.com/product-category/sunglasses/womens-sunglasses/" },
-            { img: IMG.sunMen, label: "Men's Sunglasses", href: "https://ilenseyewear.com/product-category/sunglasses/mens-sunglasses/" },
+            { img: IMG.sunWomen, label: "Women's Sunglasses", slug: "women" },
+            { img: IMG.sunMen, label: "Men's Sunglasses", slug: "men" },
           ].map((d) => (
-            <a key={d.label} href={d.href} className="group relative overflow-hidden rounded-3xl aspect-[16/10]" data-reveal>
+            <Link key={d.label} to="/collection/$slug" params={{ slug: d.slug }} className="group relative overflow-hidden rounded-3xl aspect-[16/10]" data-reveal>
               <img src={d.img} alt={d.label} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-ink/0" />
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
@@ -526,7 +526,7 @@ function DealsOfWeek() {
                   Shop <ArrowRight className="size-4" />
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
