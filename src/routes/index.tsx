@@ -144,11 +144,11 @@ function Navbar() {
   }, []);
 
   const links = [
-    { label: "New Arrivals", href: SHOP_LINK },
-    { label: "Eyeglasses", href: "https://ilenseyewear.com/product-category/eyeglasses/" },
-    { label: "Sunglasses", href: "https://ilenseyewear.com/product-category/sunglasses/" },
-    { label: "Computer Glasses", href: SHOP_LINK },
-    { label: "Kids", href: "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/" },
+    { label: "New Arrivals", slug: "new-arrivals" },
+    { label: "Eyeglasses", slug: "eyeglasses" },
+    { label: "Sunglasses", slug: "sunglasses" },
+    { label: "Computer Glasses", slug: "computer-glasses" },
+    { label: "Kids", slug: "kids-glasses" },
   ];
 
   return (
@@ -169,7 +169,7 @@ function Navbar() {
 
         <nav className="hidden lg:flex items-center gap-5 ml-auto text-sm font-medium text-foreground/80">
           {links.map((l) => (
-            <a key={l.label} href={l.href} className="hover:text-ink transition-colors">{l.label}</a>
+            <Link key={l.label} to="/collection/$slug" params={{ slug: l.slug }} className="hover:text-ink transition-colors">{l.label}</Link>
           ))}
         </nav>
 
@@ -183,9 +183,9 @@ function Navbar() {
           <a href="#wishlist" aria-label="Wishlist" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <Heart className="size-5" />
           </a>
-          <a href={SHOP_LINK} aria-label="Cart" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
+          <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} aria-label="Cart" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <ShoppingBag className="size-5" />
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -207,7 +207,7 @@ function Navbar() {
             </div>
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
-                <a key={l.label} href={l.href} className="px-3 py-3 rounded-lg hover:bg-surface text-foreground">{l.label}</a>
+                <Link key={l.label} to="/collection/$slug" params={{ slug: l.slug }} className="px-3 py-3 rounded-lg hover:bg-surface text-foreground">{l.label}</Link>
               ))}
             </nav>
           </div>
