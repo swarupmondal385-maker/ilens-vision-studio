@@ -78,7 +78,7 @@ function ProductPage() {
     `Hi iLens! I'd like to order:\n${product.name}\nColor: ${color}\nLens: ${lens}\nQty: ${qty}\nTotal: ₹${total}`
   )}`;
 
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "instant" as ScrollBehavior }); }, [product.slug]);
+  useEffect(() => { window.scrollTo({ top: 0, behavior: "auto" }); }, [product.slug]);
 
   const related = relatedProducts(product.slug, 4);
 
@@ -180,7 +180,7 @@ function ProductPage() {
                   style={{ background: c.hex }}
                   aria-label={c.name}
                 >
-                  {color === c.name && <Check className="size-4 text-white absolute inset-0 m-auto drop-shadow" />}
+                  {color === c.name && <Check className="size-4 text-background absolute inset-0 m-auto drop-shadow" />}
                 </button>
               ))}
             </div>
@@ -227,7 +227,7 @@ function ProductPage() {
             <button
               onClick={() => setWished((w) => !w)}
               className={`size-11 grid place-items-center rounded-full ring-1 transition ${
-                wished ? "bg-rose-50 ring-rose-300 text-rose-500" : "bg-background ring-border text-foreground/70 hover:text-ink"
+                wished ? "bg-sky-soft ring-primary text-ink" : "bg-background ring-border text-foreground/70 hover:text-ink"
               }`}
               aria-label="Wishlist"
             >

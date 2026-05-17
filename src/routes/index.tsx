@@ -26,7 +26,6 @@ const WA_LINK = `https://wa.me/${WA_NUMBER}?text=Hi%20iLens%2C%20I%27m%20interes
 const PHONE_LINK = "tel:+919999999999";
 const MAPS_LINK = "https://maps.app.goo.gl/KhgY2g92bH2Ht5b6A?g_st=ic";
 const INSTAGRAM_LINK = "https://www.instagram.com/ilenseyewear/";
-const SHOP_LINK = "https://ilenseyewear.com/shop/";
 
 const IMG = {
   men: "https://ilenseyewear.com/wp-content/uploads/2026/05/mens-Eyewear-1.png",
@@ -56,12 +55,12 @@ const IMG = {
 
 
 const CATEGORIES = [
-  { name: "Eyeglasses", icon: Glasses, href: "https://ilenseyewear.com/product-category/eyeglasses/" },
-  { name: "Sunglasses", icon: Sun, href: "https://ilenseyewear.com/product-category/sunglasses/" },
-  { name: "Power Sunglasses", icon: Eye, href: SHOP_LINK },
-  { name: "Kids Glasses", icon: Baby, href: "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/" },
-  { name: "Computer Glasses", icon: Monitor, href: SHOP_LINK },
-  { name: "Reading Glasses", icon: BookOpen, href: SHOP_LINK },
+  { name: "Eyeglasses", icon: Glasses, slug: "eyeglasses" },
+  { name: "Sunglasses", icon: Sun, slug: "sunglasses" },
+  { name: "Power Sunglasses", icon: Eye, slug: "power-sunglasses" },
+  { name: "Kids Glasses", icon: Baby, slug: "kids-glasses" },
+  { name: "Computer Glasses", icon: Monitor, slug: "computer-glasses" },
+  { name: "Reading Glasses", icon: BookOpen, slug: "reading-glasses" },
 ];
 
 function useReveal() {
@@ -125,12 +124,12 @@ function PromoBar() {
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2">
+    <Link to="/" className="flex items-center gap-2">
       <span className="grid place-items-center size-9 rounded-full bg-primary/40 ring-1 ring-primary/60">
         <Eye className="size-5 text-ink" strokeWidth={2.4} />
       </span>
-      <span className="font-display text-xl font-bold tracking-tight text-ink">iLens<span className="text-primary"> .</span></span>
-    </a>
+      <span className="font-display text-xl font-bold text-ink">iLens<span className="text-primary"> .</span></span>
+    </Link>
   );
 }
 
@@ -145,11 +144,11 @@ function Navbar() {
   }, []);
 
   const links = [
-    { label: "New Arrivals", href: SHOP_LINK },
-    { label: "Eyeglasses", href: "https://ilenseyewear.com/product-category/eyeglasses/" },
-    { label: "Sunglasses", href: "https://ilenseyewear.com/product-category/sunglasses/" },
-    { label: "Computer Glasses", href: SHOP_LINK },
-    { label: "Kids", href: "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/" },
+    { label: "New Arrivals", slug: "new-arrivals" },
+    { label: "Eyeglasses", slug: "eyeglasses" },
+    { label: "Sunglasses", slug: "sunglasses" },
+    { label: "Computer Glasses", slug: "computer-glasses" },
+    { label: "Kids", slug: "kids-glasses" },
   ];
 
   return (
@@ -170,7 +169,7 @@ function Navbar() {
 
         <nav className="hidden lg:flex items-center gap-5 ml-auto text-sm font-medium text-foreground/80">
           {links.map((l) => (
-            <a key={l.label} href={l.href} className="hover:text-ink transition-colors">{l.label}</a>
+            <Link key={l.label} to="/collection/$slug" params={{ slug: l.slug }} className="hover:text-ink transition-colors">{l.label}</Link>
           ))}
         </nav>
 
@@ -178,15 +177,15 @@ function Navbar() {
           <a href={INSTAGRAM_LINK} aria-label="Instagram" className="hidden sm:grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <Instagram className="size-5" />
           </a>
-          <a href="#account" aria-label="Account" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
+          <a href={WA_LINK} aria-label="Account help" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <User className="size-5" />
           </a>
-          <a href="#wishlist" aria-label="Wishlist" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
+          <Link to="/collection/$slug" params={{ slug: "premium-lens" }} aria-label="Wishlist" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <Heart className="size-5" />
-          </a>
-          <a href={SHOP_LINK} aria-label="Cart" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
+          </Link>
+          <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} aria-label="Cart" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <ShoppingBag className="size-5" />
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -208,7 +207,7 @@ function Navbar() {
             </div>
             <nav className="flex flex-col gap-1">
               {links.map((l) => (
-                <a key={l.label} href={l.href} className="px-3 py-3 rounded-lg hover:bg-surface text-foreground">{l.label}</a>
+                <Link key={l.label} to="/collection/$slug" params={{ slug: l.slug }} className="px-3 py-3 rounded-lg hover:bg-surface text-foreground">{l.label}</Link>
               ))}
             </nav>
           </div>
@@ -225,13 +224,13 @@ function Categories() {
     <section className="border-b border-border/60">
       <div className="mx-auto max-w-7xl px-4 py-6 md:py-8">
         <div className="grid grid-cols-3 sm:grid-cols-6 gap-3 md:gap-6">
-          {CATEGORIES.map(({ name, icon: Icon, href }) => (
-            <a key={name} href={href} className="flex flex-col items-center text-center group" data-reveal>
+          {CATEGORIES.map(({ name, icon: Icon, slug }) => (
+            <Link key={name} to="/collection/$slug" params={{ slug }} className="flex flex-col items-center text-center group" data-reveal>
               <div className="grid place-items-center size-20 sm:size-24 rounded-full bg-sky-soft group-hover:bg-sky transition-colors ring-1 ring-sky/40">
                 <Icon className="size-9 sm:size-10 text-ink" strokeWidth={1.6} />
               </div>
               <span className="mt-2 text-xs sm:text-sm font-medium text-foreground/80 group-hover:text-ink">{name}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -259,9 +258,9 @@ function Hero() {
                 Premium eyewear designed for sharp vision, lasting comfort and effortless style — handpicked frames from <strong>₹350</strong>, with free lens on select pairs.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <a href={SHOP_LINK} className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-6 py-3 text-sm font-semibold hover:bg-ink/85 transition-colors">
+                <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-6 py-3 text-sm font-semibold hover:bg-ink/85 transition-colors">
                   Shop Now <ArrowRight className="size-4" />
-                </a>
+                </Link>
                 <a href="#book" className="inline-flex items-center gap-2 rounded-full bg-background ring-1 ring-border px-6 py-3 text-sm font-semibold hover:bg-surface transition-colors">
                   <Calendar className="size-4" /> Book Eye Test
                 </a>
@@ -293,18 +292,18 @@ function Hero() {
         {/* Two image cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
           {[
-            { img: IMG.men, title: "Men's Eyewear", href: "https://ilenseyewear.com/product-category/eyeglasses/mens-eyeglasses/" },
-            { img: IMG.women, title: "Women's Eyewear", href: "https://ilenseyewear.com/product-category/eyeglasses/womens-eyeglasses/" },
-            { img: IMG.kids, title: "Kids Eyewear", href: "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/" },
+            { img: IMG.men, title: "Men's Eyewear", slug: "men" },
+            { img: IMG.women, title: "Women's Eyewear", slug: "women" },
+            { img: IMG.kids, title: "Kids Eyewear", slug: "kids" },
           ].map((c) => (
-            <a key={c.title} href={c.href} className="group relative block overflow-hidden rounded-2xl bg-sky-soft aspect-[4/3]" data-reveal>
+            <Link key={c.title} to="/collection/$slug" params={{ slug: c.slug }} className="group relative block overflow-hidden rounded-2xl bg-sky-soft aspect-[4/3]" data-reveal>
               <img src={c.img} alt={c.title} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/60 via-ink/0 to-transparent" />
               <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
                 <h3 className="text-background text-xl font-bold">{c.title}</h3>
                 <span className="grid place-items-center size-9 rounded-full bg-background text-ink"><ArrowRight className="size-4" /></span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -361,9 +360,9 @@ function TrendingProducts() {
             <p className="text-sm font-medium text-primary mb-2">Bestsellers</p>
             <h2 className="text-3xl md:text-4xl font-bold text-ink">Trending Eyewear</h2>
           </div>
-          <a href={SHOP_LINK} className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-ink hover:gap-2 transition-all">
+          <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} className="hidden sm:inline-flex items-center gap-1 text-sm font-semibold text-ink hover:gap-2 transition-all">
             View all <ChevronRight className="size-4" />
-          </a>
+          </Link>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {PRODUCTS.slice(0, 10).map((p, i) => <ProductCard key={i} p={p} />)}
@@ -415,12 +414,12 @@ function BrowseByShape() {
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-4">
           {shapes.map(([name, src]) => (
-            <a key={name} href={SHOP_LINK} className="group flex flex-col items-center" data-reveal>
+            <Link key={name} to="/collection/$slug" params={{ slug: name.toLowerCase().replace(" ", "-") }} className="group flex flex-col items-center" data-reveal>
               <div className="grid place-items-center w-full aspect-square rounded-2xl bg-beige-soft ring-1 ring-border group-hover:bg-sky-soft transition-colors p-4">
                 <img src={src} alt={name} className="max-h-full max-w-full object-contain" />
               </div>
               <span className="mt-2 text-sm font-medium text-ink">{name}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -434,7 +433,7 @@ function CollectionsBanner() {
   return (
     <section className="py-6">
       <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-4">
-        <a href={SHOP_LINK} className="relative overflow-hidden rounded-3xl bg-beige aspect-[16/10] md:aspect-[16/9]" data-reveal>
+        <Link to="/collection/$slug" params={{ slug: "classics" }} className="relative overflow-hidden rounded-3xl bg-beige aspect-[16/10] md:aspect-[16/9]" data-reveal>
           <img src={IMG.hero2} alt="Forever classics" className="absolute inset-0 h-full w-full object-cover opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-r from-beige/95 to-transparent" />
           <div className="relative z-10 p-8 md:p-12 max-w-sm">
@@ -445,8 +444,8 @@ function CollectionsBanner() {
               Explore Collection <ArrowRight className="size-4" />
             </span>
           </div>
-        </a>
-        <a href={SHOP_LINK} className="relative overflow-hidden rounded-3xl bg-sky-soft aspect-[16/10] md:aspect-[16/9]" data-reveal>
+        </Link>
+        <Link to="/collection/$slug" params={{ slug: "premium-lens" }} className="relative overflow-hidden rounded-3xl bg-sky-soft aspect-[16/10] md:aspect-[16/9]" data-reveal>
           <img src={IMG.classic} alt="Premium" className="absolute inset-0 h-full w-full object-cover opacity-95" />
           <div className="absolute inset-0 bg-gradient-to-r from-sky/90 to-transparent" />
           <div className="relative z-10 p-8 md:p-12 max-w-sm">
@@ -457,7 +456,7 @@ function CollectionsBanner() {
               Shop Featured <ArrowRight className="size-4" />
             </span>
           </div>
-        </a>
+        </Link>
       </div>
     </section>
   );
@@ -512,10 +511,10 @@ function DealsOfWeek() {
         </div>
         <div className="grid md:grid-cols-2 gap-4">
           {[
-            { img: IMG.sunWomen, label: "Women's Sunglasses", href: "https://ilenseyewear.com/product-category/sunglasses/womens-sunglasses/" },
-            { img: IMG.sunMen, label: "Men's Sunglasses", href: "https://ilenseyewear.com/product-category/sunglasses/mens-sunglasses/" },
+            { img: IMG.sunWomen, label: "Women's Sunglasses", slug: "women" },
+            { img: IMG.sunMen, label: "Men's Sunglasses", slug: "men" },
           ].map((d) => (
-            <a key={d.label} href={d.href} className="group relative overflow-hidden rounded-3xl aspect-[16/10]" data-reveal>
+            <Link key={d.label} to="/collection/$slug" params={{ slug: d.slug }} className="group relative overflow-hidden rounded-3xl aspect-[16/10]" data-reveal>
               <img src={d.img} alt={d.label} className="absolute inset-0 h-full w-full object-cover group-hover:scale-105 transition-transform duration-700" />
               <div className="absolute inset-0 bg-gradient-to-t from-ink/70 to-ink/0" />
               <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between">
@@ -527,7 +526,7 @@ function DealsOfWeek() {
                   Shop <ArrowRight className="size-4" />
                 </span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -591,7 +590,7 @@ function VisitStore() {
             <a href={MAPS_LINK} className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-5 py-3 text-sm font-semibold hover:bg-ink/85 transition-colors">
               <Navigation className="size-4" /> Get Directions
             </a>
-            <a href={WA_LINK} className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-5 py-3 text-sm font-semibold hover:opacity-90 transition-opacity">
+            <a href={WA_LINK} className="inline-flex items-center gap-2 rounded-full bg-whatsapp text-whatsapp-foreground px-5 py-3 text-sm font-semibold hover:opacity-90 transition-opacity">
               <MessageCircle className="size-4" /> WhatsApp Us
             </a>
           </div>
@@ -638,7 +637,7 @@ function Newsletter() {
 
 function Footer() {
   const cols = [
-    { title: "Shop", links: [["Eyeglasses", "https://ilenseyewear.com/product-category/eyeglasses/"], ["Sunglasses", "https://ilenseyewear.com/product-category/sunglasses/"], ["Kids", "https://ilenseyewear.com/product-category/eyeglasses/kids-eyeglasses/"], ["New Arrivals", SHOP_LINK]] },
+    { title: "Shop", links: [["Eyeglasses", "/collection/eyeglasses"], ["Sunglasses", "/collection/sunglasses"], ["Kids", "/collection/kids-glasses"], ["New Arrivals", "/collection/new-arrivals"]] },
     { title: "Help", links: [["Contact", WA_LINK], ["Track Order", "https://ilenseyewear.com/my-account/"], ["Shipping", "#"], ["Returns", "#"]] },
     { title: "About", links: [["Our Story", "#"], ["ISO Certification", "#"], ["Visit Store", MAPS_LINK], ["Instagram", INSTAGRAM_LINK]] },
   ];
@@ -673,7 +672,7 @@ function Footer() {
       <div className="border-t border-background/10">
         <div className="mx-auto max-w-7xl px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-background/60">
           <div>© {new Date().getFullYear()} iLens Eyewear. All rights reserved.</div>
-          <div>Website by <a href="#" className="text-background hover:underline font-semibold">Pixorra</a></div>
+          <div>Website by <span className="text-background font-semibold">Pixorra</span></div>
         </div>
       </div>
     </footer>
@@ -687,7 +686,7 @@ function FloatingWA() {
     <a
       href={WA_LINK}
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-24 md:bottom-6 right-5 z-40 grid place-items-center size-14 rounded-full bg-[#25D366] text-white shadow-xl hover:scale-105 transition-transform"
+      className="fixed bottom-24 md:bottom-6 right-5 z-40 grid place-items-center size-14 rounded-full bg-whatsapp text-whatsapp-foreground shadow-xl hover:scale-105 transition-transform"
     >
       <MessageCircle className="size-7" />
     </a>
@@ -701,7 +700,7 @@ function MobileBar() {
         <Phone className="size-5 text-ink" />
         <span className="text-[11px] font-medium text-ink">Call</span>
       </a>
-      <a href={WA_LINK} className="flex flex-col items-center justify-center py-3 gap-0.5 bg-[#25D366] text-white">
+      <a href={WA_LINK} className="flex flex-col items-center justify-center py-3 gap-0.5 bg-whatsapp text-whatsapp-foreground">
         <MessageCircle className="size-5" />
         <span className="text-[11px] font-medium">WhatsApp</span>
       </a>
