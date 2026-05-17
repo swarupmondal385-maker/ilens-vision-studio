@@ -414,12 +414,12 @@ function BrowseByShape() {
         </div>
         <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-7 gap-4">
           {shapes.map(([name, src]) => (
-            <a key={name} href={SHOP_LINK} className="group flex flex-col items-center" data-reveal>
+            <Link key={name} to="/collection/$slug" params={{ slug: name.toLowerCase().replace(" ", "-") }} className="group flex flex-col items-center" data-reveal>
               <div className="grid place-items-center w-full aspect-square rounded-2xl bg-beige-soft ring-1 ring-border group-hover:bg-sky-soft transition-colors p-4">
                 <img src={src} alt={name} className="max-h-full max-w-full object-contain" />
               </div>
               <span className="mt-2 text-sm font-medium text-ink">{name}</span>
-            </a>
+            </Link>
           ))}
         </div>
       </div>
@@ -433,7 +433,7 @@ function CollectionsBanner() {
   return (
     <section className="py-6">
       <div className="mx-auto max-w-7xl px-4 grid md:grid-cols-2 gap-4">
-        <a href={SHOP_LINK} className="relative overflow-hidden rounded-3xl bg-beige aspect-[16/10] md:aspect-[16/9]" data-reveal>
+        <Link to="/collection/$slug" params={{ slug: "classics" }} className="relative overflow-hidden rounded-3xl bg-beige aspect-[16/10] md:aspect-[16/9]" data-reveal>
           <img src={IMG.hero2} alt="Forever classics" className="absolute inset-0 h-full w-full object-cover opacity-90" />
           <div className="absolute inset-0 bg-gradient-to-r from-beige/95 to-transparent" />
           <div className="relative z-10 p-8 md:p-12 max-w-sm">
@@ -444,8 +444,8 @@ function CollectionsBanner() {
               Explore Collection <ArrowRight className="size-4" />
             </span>
           </div>
-        </a>
-        <a href={SHOP_LINK} className="relative overflow-hidden rounded-3xl bg-sky-soft aspect-[16/10] md:aspect-[16/9]" data-reveal>
+        </Link>
+        <Link to="/collection/$slug" params={{ slug: "premium-lens" }} className="relative overflow-hidden rounded-3xl bg-sky-soft aspect-[16/10] md:aspect-[16/9]" data-reveal>
           <img src={IMG.classic} alt="Premium" className="absolute inset-0 h-full w-full object-cover opacity-95" />
           <div className="absolute inset-0 bg-gradient-to-r from-sky/90 to-transparent" />
           <div className="relative z-10 p-8 md:p-12 max-w-sm">
@@ -456,7 +456,7 @@ function CollectionsBanner() {
               Shop Featured <ArrowRight className="size-4" />
             </span>
           </div>
-        </a>
+        </Link>
       </div>
     </section>
   );
