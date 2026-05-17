@@ -124,12 +124,12 @@ function PromoBar() {
 
 function Logo() {
   return (
-    <a href="#" className="flex items-center gap-2">
+    <Link to="/" className="flex items-center gap-2">
       <span className="grid place-items-center size-9 rounded-full bg-primary/40 ring-1 ring-primary/60">
         <Eye className="size-5 text-ink" strokeWidth={2.4} />
       </span>
       <span className="font-display text-xl font-bold tracking-tight text-ink">iLens<span className="text-primary"> .</span></span>
-    </a>
+    </Link>
   );
 }
 
@@ -177,12 +177,12 @@ function Navbar() {
           <a href={INSTAGRAM_LINK} aria-label="Instagram" className="hidden sm:grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <Instagram className="size-5" />
           </a>
-          <a href="#account" aria-label="Account" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
+          <a href={WA_LINK} aria-label="Account help" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <User className="size-5" />
           </a>
-          <a href="#wishlist" aria-label="Wishlist" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
+          <Link to="/collection/$slug" params={{ slug: "premium-lens" }} aria-label="Wishlist" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <Heart className="size-5" />
-          </a>
+          </Link>
           <Link to="/collection/$slug" params={{ slug: "new-arrivals" }} aria-label="Cart" className="grid place-items-center size-9 rounded-full hover:bg-surface transition-colors">
             <ShoppingBag className="size-5" />
           </Link>
