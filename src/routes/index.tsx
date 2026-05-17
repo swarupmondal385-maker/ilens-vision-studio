@@ -128,7 +128,7 @@ function Logo() {
       <span className="grid place-items-center size-9 rounded-full bg-primary/40 ring-1 ring-primary/60">
         <Eye className="size-5 text-ink" strokeWidth={2.4} />
       </span>
-      <span className="font-display text-xl font-bold tracking-tight text-ink">iLens<span className="text-primary"> .</span></span>
+      <span className="font-display text-xl font-bold text-ink">iLens<span className="text-primary"> .</span></span>
     </Link>
   );
 }
@@ -590,7 +590,7 @@ function VisitStore() {
             <a href={MAPS_LINK} className="inline-flex items-center gap-2 rounded-full bg-ink text-background px-5 py-3 text-sm font-semibold hover:bg-ink/85 transition-colors">
               <Navigation className="size-4" /> Get Directions
             </a>
-            <a href={WA_LINK} className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-5 py-3 text-sm font-semibold hover:opacity-90 transition-opacity">
+            <a href={WA_LINK} className="inline-flex items-center gap-2 rounded-full bg-whatsapp text-whatsapp-foreground px-5 py-3 text-sm font-semibold hover:opacity-90 transition-opacity">
               <MessageCircle className="size-4" /> WhatsApp Us
             </a>
           </div>
@@ -672,7 +672,7 @@ function Footer() {
       <div className="border-t border-background/10">
         <div className="mx-auto max-w-7xl px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-background/60">
           <div>© {new Date().getFullYear()} iLens Eyewear. All rights reserved.</div>
-          <div>Website by <a href="#" className="text-background hover:underline font-semibold">Pixorra</a></div>
+          <div>Website by <span className="text-background font-semibold">Pixorra</span></div>
         </div>
       </div>
     </footer>
@@ -686,7 +686,7 @@ function FloatingWA() {
     <a
       href={WA_LINK}
       aria-label="Chat on WhatsApp"
-      className="fixed bottom-24 md:bottom-6 right-5 z-40 grid place-items-center size-14 rounded-full bg-[#25D366] text-white shadow-xl hover:scale-105 transition-transform"
+      className="fixed bottom-24 md:bottom-6 right-5 z-40 grid place-items-center size-14 rounded-full bg-whatsapp text-whatsapp-foreground shadow-xl hover:scale-105 transition-transform"
     >
       <MessageCircle className="size-7" />
     </a>
@@ -700,7 +700,7 @@ function MobileBar() {
         <Phone className="size-5 text-ink" />
         <span className="text-[11px] font-medium text-ink">Call</span>
       </a>
-      <a href={WA_LINK} className="flex flex-col items-center justify-center py-3 gap-0.5 bg-[#25D366] text-white">
+      <a href={WA_LINK} className="flex flex-col items-center justify-center py-3 gap-0.5 bg-whatsapp text-whatsapp-foreground">
         <MessageCircle className="size-5" />
         <span className="text-[11px] font-medium">WhatsApp</span>
       </a>
